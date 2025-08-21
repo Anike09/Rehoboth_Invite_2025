@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Letterhead</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .letter-container {
+            perspective: 1500px;
+            margin: 20px 0 40px;
+        }
+        
+        .letter {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        
+        .letter.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .letterhead, .content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .letterhead {
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            justify-content: space-between;
+        }
+        
+        .company-info {
+            text-align: center;
+        }
+        
+        .company-name {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .company-tagline {
+            font-size: 16px;
+            color: #f80303;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .company-details {
+            font-size: 14px;
+            color: #34495e;
+            line-height: 1.6;
+        }
+        
+        .stamp {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            border: 2px dashed #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e74c3c;
+            font-weight: bold;
+            transform: rotate(15deg);
+        }
+        
+        .instructions {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #7f8c8d;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .content {
+            background: white;
+            transform: rotateY(180deg);
+            padding: 40px;
+            text-align: left;
+            overflow-y: auto;
+        }
+        
+        .content h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+        
+        .content .closing {
+            margin-top: 30px;
+        }
+        
+        .btn-new {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn-new:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .btn-new:active {
+            transform: translateY(0);
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: rgba(0,0,0,0.1);
+            font-size: 120px;
+            font-weight: bold;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rehoboth RLFM "8th Year Anniversary" </h1>
+        
+        <div class="letter-container">
+            <div class="letter" id="letter">
+                <div class="letterhead">
+                    <div class="company-info">
+                        <div class="company-name">REHOBOTH LIVING FAITH MISSION</div>
+                        <div class="company-tagline">Creating a large room of fruitfulness and a place of rest</div>
+                        <div class="company-details">
+                            Plot 5 Block B, Odutola Odusanya street<br>
+                            Olorunsogo, Molete, Ibadan.<br>
+                            Phone: 08138134520, 07063628163 | Email: rehobothlivingfaithmission@gmail.com
+                        </div>
+                    </div>
+                    <div class="stamp">8th Year Anniversary</div>
+                    <div class="watermark">PREMIUM</div>
+                    <div class="instructions">Click to open the letter</div>
+                </div>
+                
+                <div class="content">
+                    <h2>Important Announcement</h2>
+                    <p>Dear Valued Guest,</p>
+                    <p>Calvary Greetings to you in the Name of our Lord Jesus Christ, how are you and your entire families whom God made you oversee?
+                        Rehoboth Living Faith Mission is delighted to invite you as her guest to her 8th Year Annual Convention.
+                        </p>
+                    <p>Our team has worked diligently to integrate the latest technologies while maintaining the personalized approach that has been the cornerstone of our relationship.</p>
+                    <p>Key enhancements include:</p>
+                    <p>• Streamlined digital onboarding process</p>
+                    <p>• Advanced analytics dashboard</p>
+                    <p>• 24/7 dedicated support channel</p>
+                    <p>We will be hosting a webinar on June 15th to demonstrate these new features and answer any questions you may have. Please RSVP through your client portal.</p>
+                    <p class="closing">Yours Faithfully,<br><br>
+                    Apostle Paul. A. Adewodun<br>
+                    General Overseer<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const letter = document.getElementById('letter');
+            const newLetterBtn = document.getElementById('newLetter');
+            
+            // Flip the letter on click
+            letter.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
