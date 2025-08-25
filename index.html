@@ -345,14 +345,6 @@
             letter.addEventListener('click', function() {
                 this.classList.toggle('flipped');
             });
-            
-            // Flip the letter on Enter or Space key
-            letter.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    this.classList.toggle('flipped');
-                }
-            });
         });
     </script>
 </body>
