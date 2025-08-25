@@ -344,42 +344,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const letter = document.getElementById('letter');
             
-            function flipLetter() {
-                letter.classList.toggle('flipped');
-            }
             
-            // Click event
-            letter.addEventListener('click', flipLetter);
-            
-            // Keyboard accessibility
-            letter.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    flipLetter();
-                }
-            });
-            
-            // Touch event handling for mobile devices
-            let touchStartTime;
-            let touchMoved = false;
-            
-            letter.addEventListener('touchstart', function(e) {
-                touchStartTime = Date.now();
-                touchMoved = false;
-            });
-            
-            letter.addEventListener('touchmove', function() {
-                touchMoved = true;
-            });
-            
-            letter.addEventListener('touchend', function(e) {
-                const touchDuration = Date.now() - touchStartTime;
-                
-                // Only flip if it's a quick tap and user didn't move finger (scroll)
-                if (touchDuration < 500 && !touchMoved) {
-                    e.preventDefault(); // Prevent double-tap zoom
-                    flipLetter();
-                }
+            // Flip the letter on click
+            letter.addEventListener('click', function() {
+                this.classList.toggle('flipped');
             });
         });
     </script>
