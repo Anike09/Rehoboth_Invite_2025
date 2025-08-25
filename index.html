@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 8th year Anniversary Rehoboth</title>
+    <title>Happy 8th Year Anniversary Rehoboth</title>
     <style>
         * {
             box-sizing: border-box;
@@ -24,7 +24,7 @@
         
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
@@ -33,6 +33,7 @@
             color: #2c3e50;
             margin-bottom: 30px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-size: 2.5rem;
         }
         
         .letter-container {
@@ -43,12 +44,16 @@
         .letter {
             position: relative;
             width: 100%;
-            height: 500px;
+            min-height: 500px;
             transition: transform 0.8s;
             transform-style: preserve-3d;
             cursor: pointer;
             box-shadow: 0 15px 25px rgba(0,0,0,0.1);
             border-radius: 5px;
+        }
+        
+        .letter:hover {
+            transform: scale(1.02);
         }
         
         .letter.flipped {
@@ -112,6 +117,8 @@
             color: #e74c3c;
             font-weight: bold;
             transform: rotate(15deg);
+            font-size: 14px;
+            text-align: center;
         }
         
         .instructions {
@@ -152,52 +159,130 @@
             margin-top: 30px;
         }
         
-        .btn-new {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .btn-new:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-        
-        .btn-new:active {
-            transform: translateY(0);
-        }
-        
         .watermark {
             position: absolute;
             bottom: 20px;
             left: 0;
             width: 100%;
             text-align: center;
-            color: rgba(0,0,0,0.1);
-            font-size: 120px;
+            color: rgba(0,0,0,0.05);
+            font-size: 80px;
             font-weight: bold;
             z-index: -1;
         }
+        
         img {
-            width: 400;
-            height: 300;
-            background-position: center;
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            max-width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .letter {
+                min-height: 400px;
+            }
+            
+            .letterhead, .content {
+                padding: 20px;
+            }
+            
+            .company-name {
+                font-size: 22px;
+            }
+            
+            .company-tagline {
+                font-size: 14px;
+            }
+            
+            .company-details {
+                font-size: 12px;
+            }
+            
+            .stamp {
+                width: 60px;
+                height: 60px;
+                font-size: 12px;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .instructions {
+                font-size: 14px;
+            }
+            
+            .watermark {
+                font-size: 60px;
+            }
+            
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .letter {
+                min-height: 300px;
+            }
+            
+            .letterhead, .content {
+                padding: 15px;
+            }
+            
+            .company-name {
+                font-size: 18px;
+            }
+            
+            .company-tagline {
+                font-size: 12px;
+            }
+            
+            .company-details {
+                font-size: 11px;
+            }
+            
+            .stamp {
+                width: 50px;
+                height: 50px;
+                font-size: 10px;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .instructions {
+                font-size: 12px;
+            }
+            
+            .watermark {
+                font-size: 40px;
+            }
+        }
+        
+        /* Disable hover effect on touch devices */
+        @media (hover: none) {
+            .letter:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Rehoboth RLFM "8th Year Anniversary" </h1>
+        <h1>Rehoboth RLFM "8th Year Anniversary"</h1>
         
         <div class="letter-container">
-            <div class="letter" id="letter">
+            <div class="letter" id="letter" role="button" tabindex="0">
                 <div class="letterhead">
                     <div class="company-info">
                         <div class="company-name">REHOBOTH LIVING FAITH MISSION</div>
@@ -209,23 +294,22 @@
                     </div>
                     <div class="stamp">8th Year Anniversary</div>
                     <div class="watermark">PREMIUM</div>
-                    <img src="img.jpg">
+                    <img src="img.jpg" alt="Rehoboth Anniversary Image">
                     <div class="instructions">Click to open the letter</div>
                 </div>
                 
                 <div class="content">
                     <h2>Important Announcement</h2>
                     <p>Dear Valued Guest,</p>
-                    <p>You are cordially invited to join us as we celebrate a remarkable milestone - The 8th Year Anniversary of REHOBOTH LIVING FAITH MISSION!
-                        </p>
-                    <p>Join us for a day of celebration, inspiration, impartation and empowerment, as we mark this special occasion. Your presence would be a cherised honor.</p>
+                    <p>You are cordially invited to join us as we celebrate a remarkable milestone - The 8th Year Anniversary of REHOBOTH LIVING FAITH MISSION!</p>
+                    <p>Join us for a day of celebration, inspiration, impartation, and empowerment, as we mark this special occasion. Your presence would be a cherished honor.</p>
                     <p>• Theme: ON EAGLE'S WING (Exodus 19:4-5)</p>
                     <p>• Date: 8th - 12th OCTOBER 2025</p>
                     <p>• Venue: Plot 5 Block B, Odutola Odusanya close, Olorunsogo, Molete, Ibadan.</p><br>
-                    <p>We look forward to sharing this joyous occasion with you!.</p>
+                    <p>We look forward to sharing this joyous occasion with you!</p>
                     <p class="closing">Yours Faithfully,<br><br>
                     Apostle Paul. A. Adewodun<br>
-                    General Overseer<br>
+                    General Overseer</p>
                 </div>
             </div>
         </div>
@@ -234,11 +318,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const letter = document.getElementById('letter');
-            const newLetterBtn = document.getElementById('newLetter');
             
             // Flip the letter on click
             letter.addEventListener('click', function() {
                 this.classList.toggle('flipped');
+            });
+            
+            // Flip the letter on Enter or Space key
+            letter.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === 'Space') {
+                    event.preventDefault();
+                    this.classList.toggle('flipped');
+                }
             });
         });
     </script>
