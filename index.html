@@ -359,15 +359,26 @@
                 }
             });
             
+            // Touch event handling for mobile devices
             let touchStartTime;
-            letter.addEventListener('touchstart', function() {
+            let touchMoved = false;
+            
+            letter.addEventListener('touchstart', function(e) {
                 touchStartTime = Date.now();
+                touchMoved = false;
+            });
+            
+            letter.addEventListener('touchmove', function() {
+                touchMoved = true;
             });
             
             letter.addEventListener('touchend', function(e) {
                 const touchDuration = Date.now() - touchStartTime;
-                if (touchDuration < 500) { // Quick tap
+                
+                // Only flip if it's a quick tap and user didn't move finger (scroll)
+                if (touchDuration < 500 && !touchMoved) {
                     e.preventDefault(); // Prevent double-tap zoom
+                    flipLetter();
                 }
             });
         });
