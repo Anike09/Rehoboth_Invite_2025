@@ -29,13 +29,63 @@
         text-align: center;
       }
 
-      h1 {
-        color: #2c3e50;
-        margin-bottom: 20px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        font-size: clamp(1.25rem, 4vw, 2.5rem);
-        line-height: 1.2;
-        padding: 0 10px;
+      /* New header image styles */
+      .header-image-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(45deg, #0602c5, #f80303);
+        padding: 3px;
+      }
+
+      .header-image {
+        width: 100%;
+        height: clamp(100px, 18vw, 160px);
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+       .logo-container {
+        width: clamp(80px, 15vw, 140px);
+        height: clamp(80px, 15vw, 140px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .church-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        background: white;
+        padding: 5px;
+      }
+
+      .anniversary-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: linear-gradient(135deg, #0602c5, #f80303);
+        color: white;
+        border-radius: 15px;
+        padding: 6px 12px;
+        font-size: clamp(9px, 2vw, 12px);
+        font-weight: bold;
+        z-index: 3;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
       }
 
       .letter-container {
@@ -147,27 +197,6 @@
         line-height: 1.4;
       }
 
-      .stamp {
-        position: absolute;
-        top: clamp(15px, 3vw, 30px);
-        right: clamp(15px, 3vw, 30px);
-        width: clamp(50px, 12vw, 80px);
-        height: clamp(50px, 12vw, 80px);
-        border: 2px dashed #e74c3c;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #e74c3c;
-        font-weight: bold;
-        transform: rotate(15deg);
-        font-size: clamp(8px, 2vw, 14px);
-        text-align: center;
-        padding: 5px;
-        /* Prevent stamp from affecting performance */
-        will-change: auto;
-      }
-
       .instructions {
         margin-top: 15px;
         font-size: clamp(12px, 3vw, 16px);
@@ -204,19 +233,6 @@
 
       .content .closing {
         margin-top: 20px;
-      }
-
-      .watermark {
-        position: absolute;
-        bottom: 15px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        color: rgba(0, 0, 0, 0.02);
-        font-size: clamp(30px, 15vw, 80px);
-        font-weight: bold;
-        z-index: 0;
-        pointer-events: none;
       }
 
       .image-container {
@@ -351,7 +367,19 @@
   </head>
   <body>
     <div class="container">
-      <h1>REHOBOTH LIVING FAITH MISSION</h1>
+      <div class="header-image-container">
+        <div class="header-image">
+          <div class="anniversary-badge">8th Anniversary</div>
+          <div class="logo-container">
+            <img 
+              src="img_2.jpg"
+              alt="Rehoboth Living Faith Mission Logo" 
+              class="church-logo"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f8f9fa;border-radius:50%;color:#666;font-size:14px;text-align:center;padding:20px;&quot;>REHOBOTH<br>LIVING FAITH<br>MISSION</div>';"
+            />
+          </div>
+        </div>
+      </div>
 
       <div class="letter-container">
         <div
@@ -375,8 +403,6 @@
                 rehobothlivingfaithmission@gmail.com
               </div>
             </div>
-            <div class="stamp">8th Year Anniversary</div>
-            <div class="watermark">PREMIUM</div>
             <div class="image-container">
               <img
                 src="img.jpg"
