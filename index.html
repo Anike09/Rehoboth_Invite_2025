@@ -240,24 +240,31 @@
 
       .image-container {
         width: 100%;
-        max-width: clamp(400px, 60vw, 500px);
-        margin: 10px auto 15px;
+        max-width: clamp(350px, 70vw, 600px);
+        margin: 15px auto;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
         flex: 1;
+        min-height: clamp(180px, 35vh, 300px);
+        padding: 10px;
       }
 
       img {
         width: 100%;
         height: auto;
         max-width: 100%;
-        max-height: clamp(300px, 40vh, 450px);
+        max-height: 100%;
         display: block;
         object-fit: contain;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        border: 8px solid #ffffff;
+        box-shadow: 
+          0 8px 25px rgba(0, 0, 0, 0.15),
+          0 0 0 2px rgba(6, 2, 197, 0.1),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
       }
 
       /* Performance optimizations for different devices */
@@ -278,6 +285,16 @@
         }
       }
 
+       .image-container {
+          max-width: clamp(300px, 85vw, 450px);
+          min-height: clamp(150px, 30vh, 250px);
+          padding: 8px;
+        }
+
+        img {
+          border-width: 6px;
+        }
+    
       /* Disable complex animations on very low-end devices */
       @media (max-width: 320px) {
         .letter {
@@ -295,11 +312,25 @@
         }
       }
 
+      .image-container {
+          max-width: clamp(280px, 90vw, 350px);
+          min-height: clamp(120px, 25vh, 200px);
+          padding: 5px;
+        }
+
+        img {
+          border-width: 4px;
+        }
+
       /* Disable hover effects on touch devices */
       @media (hover: none) and (pointer: coarse) {
         .letter:hover {
           transform: none;
         }
+
+         .image-container:hover img {
+          transform: none;
+         }
 
         .letter:active {
           transform: scale(0.98);
@@ -323,6 +354,14 @@
         .letter:active {
           transform: none;
         }
+
+        img {
+          transition: none;
+        }
+
+        .image-container:hover img {
+          transform: none;
+        }
       }
 
       /* Landscape orientation adjustments */
@@ -334,6 +373,36 @@
 
         .letter {
           min-height: 300px;
+        }
+      }
+
+       .image-container {
+          min-height: clamp(100px, 20vh, 180px);
+        }
+
+      /* Desktop and larger screens - ensure image shows fully */
+      @media (min-width: 768px) {
+        .image-container {
+          max-width: clamp(450px, 65vw, 650px);
+          min-height: clamp(250px, 40vh, 350px);
+          padding: 15px;
+        }
+
+        img {
+          border-width: 10px;
+        }
+      }
+
+      /* Large desktop screens */
+      @media (min-width: 1200px) {
+        .image-container {
+          max-width: 700px;
+          min-height: 400px;
+          padding: 20px;
+        }
+
+        img {
+          border-width: 12px;
         }
       }
 
