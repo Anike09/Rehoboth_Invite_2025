@@ -1,693 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 8th Year Anniversary Rehoboth</title>
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: "Georgia", serif;
-      }
-
-      body {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 15px;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      /* Fixed header with reduced size */
-      .header-image-container {
-        width: 100%;
-        max-width: 800px;
-        height: 100px;
-        margin: 0 auto 20px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        background: linear-gradient(45deg, #0602c5, #f80303);
-        padding: 3px;
-        position: relative;
-      }
-
-      .header-image {
-        width: 100%;
-        height: 100%;
-        background-image: url("new_img.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-
-       .logo-container {
-        width: 80px;
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
-      }
-
-      .church-logo {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 50%;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        background: white;
-        padding: 2px;
-        border: 2px solid rgba(255, 255, 255, 0.8);
-      }
-
-      /* Fixed anniversary badge */
-      .anniversary-badge {
-        position: absolute;
-        top: 8px;
-        right: 12px;
-        background: linear-gradient(135deg, #0602c5, #f80303);
-        color: white;
-        border-radius: 12px;
-        padding: 8px 12px;
-        font-family:'Lucida Handwriting', cursive;
-        font-size: 11px;
-        font-weight: bold;
-        z-index: 3;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-      }
-
-      .anniversary-badge .number {
-        font-size: 28px;
-        font-weight: 600;
-        font-family:'Lucida Handwriting', 'Comic Sans MS', cursive;
-        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-        display: inline-block;
-        transform: scale(1.2);
-        margin-right: 2px;
-      }
-
-      .letter-container {
-        margin: 15px 0 30px;
-        width: 100%;
-        position: relative;
-      }
-
-      .letter {
-        position: relative;
-        width: 100%;
-        min-height: clamp(300px, 60vh, 400px);
-        border-radius: 8px;
-        margin: 0 auto;
-        cursor: pointer;
-        /* Simplified shadow for better performance */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        /* Use transform3d for hardware acceleration */
-        transform: translate3d(0, 0, 0);
-        /* Smoother transitions with will-change */
-        will-change: transform;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* Simplified hover effect for better performance */
-      .letter:hover {
-        transform: translate3d(0, -2px, 0) scale(1.02);
-      }
-
-      /* Touch device optimizations */
-      .letter:active {
-        transform: translate3d(0, 1px, 0) scale(0.98);
-      }
-
-      .letterhead,
-      .content {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 8px;
-        overflow: hidden;
-        /* Hardware acceleration */
-        transform: translate3d(0, 0, 0);
-        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-      }
-
-      .letterhead {
-        background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
-        border: 1px solid #e0e0e0;
-        padding: clamp(15px, 4vw, 40px);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotateY(0deg);
-        z-index: 2;
-      }
-
-      .content {
-        background: white;
-        padding: clamp(15px, 4vw, 40px);
-        text-align: left;
-        overflow-y: auto;
-        opacity: 0;
-        transform: translate3d(0, 0, 0) rotateY(180deg);
-        z-index: 1;
-      }
-
-      /* Flipped state using opacity and transform for better performance */
-      .letter.flipped .letterhead {
-        opacity: 0;
-        transform: translate3d(0, 0, 0) rotateY(-180deg);
-        z-index: 1;
-      }
-
-      .letter.flipped .content {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotateY(0deg);
-        z-index: 2;
-      }
-
-      .company-info {
-        text-align: center;
-        flex-shrink: 0;
-      }
-
-      .company-name {
-        font-size: clamp(16px, 4vw, 26px);
-        font-weight: bold;
-        color: #0602c5;
-        margin-bottom: 8px;
-        letter-spacing: 1px;
-        line-height: 1.2;
-      }
-
-      .company-tagline {
-        font-size: clamp(12px, 3vw, 16px);
-        color: #f80303;
-        margin-bottom: 20px;
-        font-style: italic;
-        line-height: 1.3;
-      }
-
-      .company-details {
-        font-size: clamp(10px, 2.5vw, 14px);
-        color: #34495e;
-        line-height: 1.4;
-      }
-
-      .instructions {
-         margin-top: auto;
-        padding-top: 15px;
-        font-size: clamp(12px, 3vw, 16px);
-        color: #7f8c8d;
-        padding-left: 10px;
-        padding-right: 10px;
-        text-align: center;
-        flex-shrink: 0;
-        /* Simplified animation for better performance */
-        animation: pulse 3s infinite ease-in-out;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.7;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
         }
-        50% {
-          opacity: 1;
-        }
-      }
 
-      /* Fixed content styling for better visibility */
-      .content h2 {
-        color: #0602c5;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 3px solid #0602c5;
-        font-size: clamp(16px, 2vw, 18px);
-        font-weight: bold;
-        text-align: center;
-      }
-
-      .content p {
-        line-height: 1.7;
-        margin-bottom: 15px;
-        color: #2c3e50;
-        font-size: clamp(14px, 3vw, 16px);
-        font-weight: 300;
-      }
-
-      .content p:first-of-type {
-        margin-top: 10px;
-      }
-
-      /* Bold key information */
-      .content p:nth-of-type(4),
-      .content p:nth-of-type(5),
-      .content p:nth-of-type(6) {
-        font-weight: 300;
-        font-size: clamp(14px, 3vw, 16px);
-        text-align: left;
-        padding: 8px 12px;
-        margin: 10px 0;
-        border-radius: 4px;
-      }
-
-      .content .closing {
-        margin-top: 10px;
-        font-weight: 300;
-        text-align: left;
-        font-size: clamp(14px, 3vw, 16px);
-      }
-
-       .image-container {
-        width: 100%;
-        height: 100px;
-        margin: 10px auto;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 12px;
-        background: #f8f9fa;
-        border: 2px solid rgba(6, 2, 197, 0.1);
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        max-height: 100%;
-        display: block;
-        object-fit: contain;
-        border-radius: 12px;
-        border: 8px solid #ffffff;
-        box-shadow: 
-          0 8px 25px rgba(0, 0, 0, 0.15),
-          0 0 0 2px rgba(6, 2, 197, 0.1),
-          inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-        transition: all 0.3s ease;
-      }
-
-      /* Enhanced image hover effect */
-      .image-container:hover img {
-        transform: scale(1.02);
-        box-shadow: 
-          0 12px 35px rgba(0, 0, 0, 0.2),
-          0 0 0 3px rgba(6, 2, 197, 0.15),
-          inset 0 0 0 1px rgba(255, 255, 255, 0.9);
-      }
-
-       /* Mobile responsiveness */
-      @media (max-width: 700px) {
         body {
-          padding: 10px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .header-image-container {
-          height: 80px;
-          margin-bottom: 15px;
+            width: 100%;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(45deg, #0602c5, #f80303);
+            padding: 3px;
+            position: relative;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100%;
+            background-image: url("new_img.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
         .logo-container {
-          width: 60px;
-          height: 60px;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .church-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: white;
+            padding: 2px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         .anniversary-badge {
-          top: 5px;
-          right: 8px;
-          padding: 4px 10px;
-          font-size: 10px;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: linear-gradient(135deg, #0602c5, #f80303);
+            color: white;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-family: 'Arial', sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .anniversary-badge .number {
-          font-size: 22px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-right: 2px;
+        }
+
+        .letter-container {
+            margin: 20px 0;
+            width: 100%;
         }
 
         .letter {
-          min-height: 200px;
-        }
-
-        .letterhead,
-        .content {
-          padding: 10px 16px;
-        }
-
-        .image-container {
-          height: 100px;
-          margin: 15px auto;
-        }
-
-        .instructions {
-          margin-top: 10px;
-          padding: 10px;
+            position: relative;
+            width: 100%;
+            min-height: 500px;
+            border-radius: 12px;
+            margin: 0 auto;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
         }
 
         .letter:hover {
-          transform: translate3d(0, -1px, 0) scale(1.01);
-        }
-      }
-
-      /* Performance optimizations for different devices */
-      /* Small mobile devices */
-      @media (max-width: 480px) {
-        .header-image-container {
-          height: 70px;
-        }
-
-        .logo-container {
-          width: 50px;
-          height: 50px;
-        }
-
-        .anniversary-badge .number {
-          font-size: 18px;
-        }
-
-        .letter {
-          min-height: 300px;
+            transform: translateY(-3px) scale(1.01);
         }
 
         .letterhead,
         .content {
-          padding: 15px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: opacity 0.4s ease;
         }
 
-        .image-container {
-          height: 180px;
-          margin: 12px auto;
+        .letterhead {
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .content {
+            background: white;
+            padding: 30px;
+            text-align: left;
+            overflow-y: auto;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .letter.flipped .letterhead {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .letter.flipped .content {
+            opacity: 1;
+            z-index: 2;
         }
 
         .company-info {
-          margin-bottom: 15px;
-        }
-      }
-
-      /* Very small screens */
-      @media (max-width: 320px) {
-        .header-image-container {
-          height: 60px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
-        .logo-container {
-          width: 45px;
-          height: 45px;
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0602c5;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
-        .letter {
-          min-height: 250px;
+        .company-tagline {
+            font-size: 14px;
+            color: #f80303;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.4;
         }
 
-        .image-container {
-          height: 150px;
-        }
-
-        .instructions {
-          font-size: 12px !important;
-          padding: 8px;
-        }
-      }
-
-      /* Large desktop screens */
-      @media (min-width: 1200px) {
-        .header-image-container {
-          height: 120px;
-        }
-
-        .logo-container {
-          width: 100px;
-          height: 100px;
+        .company-details {
+            font-size: 12px;
+            color: #34495e;
+            line-height: 1.5;
         }
 
         .image-container {
-          height: 320px;
+            width: 100%;
+            height: 200px;
+            margin: 20px auto;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 2px solid rgba(6, 2, 197, 0.1);
         }
 
-        .letter {
-          min-height: 350px;
+        .anniversary-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
         }
 
-        .image-container {
-          height: 250px;
-        }
-
-        .instructions {
-          font-size: 18px !important;
-          padding: 10px;
-        }
-      }
-
-      /* Accessibility and touch optimizations */
-      .letter:focus {
-        outline: 3px solid #0602c5;
-        outline-offset: 2px;
-      }
-
-      @media (hover: none) and (pointer: coarse) {
-        .letter:hover {
-          transform: none;
-        }
-
-        .image-container:hover img {
-          transform: none;
-        }
-
-        .letter:active {
-          transform: scale(0.98);
-          transition: transform 0.1s ease-out;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .letter,
-        .letterhead,
-        .content,
-        img {
-          transition: none;
+        .image-container:hover .anniversary-image {
+            transform: scale(1.05);
         }
 
         .instructions {
-          animation: none;
-          opacity: 1;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+            text-align: center;
+            animation: pulse 3s infinite ease-in-out;
         }
-      }
 
-      /* Loading state */
-      .letter.loading {
-        pointer-events: none;
-        opacity: 0.7;
-      }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
 
-      /* Fallback for older browsers */
-      .no-transforms .letter.flipped .letterhead {
-        display: none;
-      }
+        .content h2 {
+            color: #0602c5;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2c3e50;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
 
-      .no-transforms .letter.flipped .content {
-        display: block;
-        opacity: 1;
-        position: relative;
-      }
+        .content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 15px;
+        }
 
-      .no-transforms .content {
-        display: none;
-      }
+        .content .event-details {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .content .closing {
+            margin-top: 25px;
+            font-weight: 500;
+            text-align: left;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .header-image-container {
+                height: 100px;
+                margin-bottom: 20px;
+            }
+
+            .logo-container {
+                width: 70px;
+                height: 70px;
+            }
+
+            .anniversary-badge {
+                top: 8px;
+                right: 10px;
+                padding: 4px 8px;
+                font-size: 9px;
+            }
+
+            .anniversary-badge .number {
+                font-size: 16px;
+            }
+
+            .company-name {
+                font-size: 18px;
+            }
+
+            .company-tagline {
+                font-size: 12px;
+            }
+
+            .company-details {
+                font-size: 11px;
+            }
+
+            .letterhead,
+            .content {
+                padding: 20px;
+            }
+
+            .letter {
+                min-height: 450px;
+            }
+
+            .image-container {
+                height: 160px;
+                margin: 15px auto;
+            }
+
+            .content h2 {
+                font-size: 18px;
+            }
+
+            .content p {
+                font-size: 14px;
+            }
+
+            .instructions {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-image-container {
+                height: 80px;
+            }
+
+            .logo-container {
+                width: 60px;
+                height: 60px;
+            }
+
+            .anniversary-badge .number {
+                font-size: 14px;
+            }
+
+            .company-name {
+                font-size: 16px;
+            }
+
+            .letterhead,
+            .content {
+                padding: 15px;
+            }
+
+            .letter {
+                min-height: 400px;
+            }
+
+            .image-container {
+                height: 140px;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .letter:hover {
+                transform: none;
+            }
+
+            .image-container:hover .anniversary-image {
+                transform: none;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .letter,
+            .letterhead,
+            .content,
+            .anniversary-image {
+                transition: none;
+            }
+
+            .instructions {
+                animation: none;
+                opacity: 1;
+            }
+        }
+
+        .letter:focus {
+            outline: 2px solid #0602c5;
+            outline-offset: 2px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <!-- Fixed header with proper logo integration -->
-      <div class="header-image-container">
-        <div class="header-image">
-          <div class="anniversary-badge">
-            <span class="number">8</span>th Anniversary
-          </div>
-          <div class="logo-container">
-            <img 
-              src="img_2.jpg"
-              alt="Rehoboth Living Faith Mission Logo" 
-              class="church-logo"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f8f9fa;border-radius:50%;color:#0602c5;font-size:8px;text-align:center;padding:5px;font-weight:bold;border:2px solid #0602c5;&quot;>REHOBOTH<br>LIVING FAITH<br>MISSION</div>';"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="letter-container">
-        <div
-          class="letter"
-          id="letter"
-          role="button"
-          tabindex="0"
-          aria-label="Click to open anniversary invitation letter"
-          aria-expanded="false"
-        >
-          <div class="letterhead">
-            <div class="company-info">
-              <div class="company-name">REHOBOTH LIVING FAITH MISSION</div>
-              <div class="company-tagline">
-                Creating a large room of fruitfulness and a place of rest
-              </div>
-              <div class="company-details">
-                Plot 5 Block B, Odutola Odusanya close, Olorunsogo, Molete,
-                Ibadan.<br>
-                Phone: 08138134520, 07063628163<br>Email:
-                rehobothlivingfaithmission@gmail.com
-              </div>
+        <div class="header-image-container">
+            <div class="header-image">
+                <div class="anniversary-badge">
+                    <span class="number">8</span>th Anniversary
+                </div>
+                <div class="logo-container">
+                    <img 
+                        src="img_2.jpg"
+                        alt="Rehoboth Living Faith Mission Logo" 
+                        class="church-logo"
+                        onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f8f9fa;border-radius:50%;color:#0602c5;font-size:10px;text-align:center;padding:8px;font-weight:bold;border:2px solid #0602c5;&quot;>REHOBOTH<br>LIVING FAITH<br>MISSION</div>';"
+                    />
+                </div>
             </div>
-             <!-- Fixed anniversary image container -->
-            <div class="image-container">
-              <img
-                src="img.jpg"
-                alt="Rehoboth Anniversary Celebration"
-                loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, #0602c5, #f80303);color:white;font-size:clamp(16px, 4vw, 24px);font-weight:bold;text-align:center;border-radius:8px;&quot;>8th Anniversary<br>Celebration</div>';"
-              />
-            </div>
-            
-            <div class="instructions">Click or tap to open the invitation letter</div>
-          </div>
-
-          <!-- Fixed content with better visibility and styling -->
-          <div class="content">
-            <h2>Special Invitation</h2>
-            <p>Dear Valued Guest,</p>
-            <p>
-              You are cordially invited to join us as we celebrate a remarkable
-              milestone - The 8th Year Anniversary of REHOBOTH LIVING FAITH
-              MISSION!
-              Join us for a day of celebration, inspiration, impartation, and
-              empowerment, as we mark this special occasion. 
-              Your presence would be a cherished honor.
-            </p>
-            <p>Theme: ON EAGLE'S WING (Exodus 19:4-5)</p>
-            <p>Date: 8th - 12th OCTOBER 2025</p>
-             <p>Venue: Plot 5 Block B, Odutola Odusanya close, Olorunsogo,
-              Molete, Ibadan.</p>
-            <p>We look forward to sharing this joyous occasion with you!</p>
-            <p class="closing">
-              Yours Faithfully,<br>
-              Apostle Paul. A. Adewodun<br>
-              General Overseer<br>
-            </p>
-          </div>
         </div>
-      </div>
+
+        <div class="letter-container">
+            <div class="letter" id="letter" role="button" tabindex="0" aria-label="Click to open anniversary invitation letter" aria-expanded="false">
+                <div class="letterhead">
+                    <div class="company-info">
+                        <div class="company-name">REHOBOTH LIVING FAITH MISSION</div>
+                        <div class="company-tagline">
+                            Creating a large room of fruitfulness and a place of rest
+                        </div>
+                        <div class="company-details">
+                            Plot 5 Block B, Odutola Odusanya close, Olorunsogo, Molete, Ibadan.<br>
+                            Phone: 08138134520, 07063628163<br>
+                            Email: rehobothlivingfaithmission@gmail.com
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img
+                            src="img.jpg"
+                            alt="Rehoboth Anniversary Celebration"
+                            class="anniversary-image"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, #0602c5, #f80303);color:white;font-size:18px;font-weight:bold;text-align:center;border-radius:6px;&quot;>8th Anniversary<br>Celebration</div>';"
+                        />
+                    </div>
+                    
+                    <div class="instructions">Click or tap to open the invitation letter</div>
+                </div>
+
+                <div class="content">
+                    <h2>Special Invitation</h2>
+                    <p>Dear Valued Guest,</p>
+                    
+                    <p>You are cordially invited to join us as we celebrate a remarkable milestone - The 8th Year Anniversary of REHOBOTH LIVING FAITH MISSION!</p>
+                    
+                    <p>Join us for a day of celebration, inspiration, impartation, and empowerment, as we mark this special occasion. Your presence would be a cherished honor.</p>
+                    
+                    <div class="event-details">
+                        <p><strong>Theme:</strong> ON EAGLE'S WING (Exodus 19:4-5)</p>
+                        <p><strong>Date:</strong> 8th - 12th OCTOBER 2025</p>
+                        <p><strong>Venue:</strong> Plot 5 Block B, Odutola Odusanya close, Olorunsogo, Molete, Ibadan.</p>
+                    </div>
+                    
+                    <p>We look forward to sharing this joyous occasion with you!</p>
+                    
+                    <div class="closing">
+                        Yours Faithfully,<br>
+                        <strong>Apostle Paul. A. Adewodun</strong><br>
+                        General Overseer
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const letter = document.getElementById("letter");
-        let isFlipping = false;
+        document.addEventListener('DOMContentLoaded', function() {
+            const letter = document.getElementById('letter');
+            let isFlipping = false;
 
-        // Try to load the uploaded logo, fallback to generated logo
-        const logoImg = document.querySelector('.church-logo');
-        if (logoImg) {
-          const originalSrc = logoImg.src;
-          logoImg.onerror = function() {
-            this.src = logoFallback;
-            this.onerror = null; // Prevent infinite loop
-          };
-        }
-
-        // Detect if device supports 3D transforms
-        function supportsTransforms() {
-          const element = document.createElement("div");
-          const transforms = [
-            "transform",
-            "WebkitTransform",
-            "MozTransform",
-            "OTransform",
-            "msTransform",
-          ];
-
-          for (let i = 0; i < transforms.length; i++) {
-            if (element.style[transforms[i]] !== undefined) {
-              return true;
+            function flipLetter() {
+                if (isFlipping) return;
+                
+                isFlipping = true;
+                letter.classList.toggle('flipped');
+                
+                const isFlipped = letter.classList.contains('flipped');
+                letter.setAttribute('aria-expanded', isFlipped.toString());
+                
+                setTimeout(() => {
+                    isFlipping = false;
+                }, 400);
             }
-          }
-          return false;
-        }
 
-        if (!supportsTransforms()) {
-          document.body.classList.add("no-transforms");
-        }
+            letter.addEventListener('click', flipLetter);
 
-        function flipLetter() {
-          if (isFlipping) return;
+            letter.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    flipLetter();
+                }
+            });
 
-          isFlipping = true;
-          letter.classList.add("loading");
+            // Touch support for mobile devices
+            let touchStartTime = 0;
+            let touchMoved = false;
 
-          requestAnimationFrame(() => {
-            letter.classList.toggle("flipped");
+            letter.addEventListener('touchstart', function(e) {
+                touchStartTime = Date.now();
+                touchMoved = false;
+            });
 
-            const isFlipped = letter.classList.contains("flipped");
-            letter.setAttribute("aria-expanded", isFlipped.toString());
+            letter.addEventListener('touchmove', function() {
+                touchMoved = true;
+            });
 
-            setTimeout(() => {
-              letter.classList.remove("loading");
-              isFlipping = false;
-            }, 400);
-          });
-        }
-
-        letter.addEventListener("click", flipLetter);
-
-        letter.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            flipLetter();
-          }
+            letter.addEventListener('touchend', function(e) {
+                const touchDuration = Date.now() - touchStartTime;
+                if (touchDuration < 500 && !touchMoved) {
+                    e.preventDefault();
+                    flipLetter();
+                }
+            });
         });
-
-        let touchStartTime = 0;
-        let touchStartY = 0;
-        let touchMoved = false;
-
-        letter.addEventListener("touchstart", function (e) {
-          touchStartTime = Date.now();
-          touchStartY = e.touches[0].clientY;
-          touchMoved = false;
-        });
-
-        letter.addEventListener("touchmove", function (e) {
-          if (Math.abs(e.touches[0].clientY - touchStartY) > 10) {
-            touchMoved = true;
-          }
-        });
-
-        letter.addEventListener("touchend", function (e) {
-          const touchDuration = Date.now() - touchStartTime;
-          if (touchDuration < 500 && !touchMoved) {
-            e.preventDefault();
-            flipLetter();
-          }
-        });
-      });
     </script>
-  </body>
+</body>
 </html>
