@@ -18,8 +18,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            justify-content: flex-start;
+            padding: 10px 20px 20px 20px;
+            padding-top: 10px;
         }
 
         .container {
@@ -32,7 +33,7 @@
         .header-image-container {
             width: 100%;
             height: 120px;
-            margin: 0 auto 30px;
+            margin: 10px auto 20px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
@@ -106,7 +107,7 @@
         .letter {
             position: relative;
             width: 100%;
-            min-height: 500px;
+            min-height: 600px;
             border-radius: 12px;
             margin: 0 auto;
             cursor: pointer;
@@ -188,8 +189,8 @@
 
         .image-container {
             width: 100%;
-            height: 200px;
-            margin: 20px auto;
+            height: 180px;
+            margin: 15px auto;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -225,7 +226,7 @@
         }
 
         .content h2 {
-            color: #0602c5;
+            color: #2c3e50;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid #2c3e50;
@@ -236,9 +237,9 @@
 
         .content p {
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             color: #2c3e50;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .content .event-details {
@@ -246,26 +247,27 @@
             padding: 15px;
             border-radius: 8px;
             margin: 20px 0;
-            border-left: 4px solid #2c3e50;
+            border-left: 1px solid #2c3e50;
         }
 
         .content .closing {
             margin-top: 25px;
             font-weight: 500;
             text-align: left;
-            font-size: 15px;
+            font-size: 14px;
             color: #2c3e50;
         }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             body {
-                padding: 15px;
+                padding: 10px;
+                padding-top: 5px;
             }
 
             .header-image-container {
                 height: 100px;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
 
             .logo-container {
@@ -274,58 +276,77 @@
             }
 
             .anniversary-badge {
-                top: 8px;
-                right: 10px;
+                top: 6px;
+                right: 8px;
                 padding: 4px 8px;
                 font-size: 9px;
             }
 
             .anniversary-badge .number {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             .company-name {
-                font-size: 18px;
+                font-size: 16px;
             }
 
             .company-tagline {
-                font-size: 12px;
+                font-size: 11px;
             }
 
             .company-details {
-                font-size: 11px;
+                font-size: 10px;
             }
 
             .letterhead,
             .content {
-                padding: 20px;
+                padding: 18px;
             }
 
             .letter {
-                min-height: 450px;
+                min-height: 550px;
             }
 
             .image-container {
-                height: 160px;
-                margin: 15px auto;
+                height: 140px;
+                margin: 12px auto;
             }
 
             .content h2 {
-                font-size: 18px;
+                font-size: 16px;
+                margin-bottom: 12px;
             }
 
             .content p {
-                font-size: 14px;
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
+            .content .event-details p {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .content .closing {
+                font-size: 12px;
+                margin-top: 15px;
             }
 
             .instructions {
-                font-size: 13px;
+                font-size: 12px;
+                margin-top: 15px;
             }
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                padding-top: 5px;
+            }
+
             .header-image-container {
                 height: 80px;
+                margin-bottom: 12px;
             }
 
             .logo-container {
@@ -333,12 +354,27 @@
                 height: 60px;
             }
 
+            .anniversary-badge {
+                top: 5px;
+                right: 6px;
+                padding: 3px 6px;
+                font-size: 8px;
+            }
+
             .anniversary-badge .number {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .company-name {
-                font-size: 16px;
+                font-size: 14px;
+            }
+
+            .company-tagline {
+                font-size: 10px;
+            }
+
+            .company-details {
+                font-size: 9px;
             }
 
             .letterhead,
@@ -347,11 +383,92 @@
             }
 
             .letter {
-                min-height: 400px;
+                min-height: 500px;
             }
 
             .image-container {
-                height: 140px;
+                height: 120px;
+                margin: 10px auto;
+            }
+
+            .content h2 {
+                font-size: 15px;
+            }
+
+            .content p {
+                font-size: 11px;
+                line-height: 1.4;
+            }
+
+            .content .event-details {
+                padding: 10px;
+                margin: 12px 0;
+            }
+
+            .content .event-details p {
+                font-size: 11px;
+                margin-bottom: 5px;
+            }
+
+            .content .closing {
+                font-size: 11px;
+                margin-top: 12px;
+            }
+
+            .instructions {
+                font-size: 11px;
+                margin-top: 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header-image-container {
+                height: 70px;
+            }
+
+            .logo-container {
+                width: 50px;
+                height: 50px;
+            }
+
+            .anniversary-badge .number {
+                font-size: 12px;
+            }
+
+            .letter {
+                min-height: 480px;
+            }
+
+            .image-container {
+                height: 100px;
+            }
+
+            .letterhead,
+            .content {
+                padding: 12px;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1024px) {
+            .letter {
+                min-height: 650px;
+            }
+
+            .image-container {
+                height: 220px;
+            }
+
+            .content h2 {
+                font-size: 20px;
+            }
+
+            .content p {
+                font-size: 14px;
+            }
+
+            .content .closing {
+                font-size: 14px;
             }
         }
 
@@ -442,16 +559,16 @@
                     <p>Join us for a day of celebration, inspiration, impartation, and empowerment, as we mark this special occasion. Your presence would be a cherished honor.</p>
                     
                     <div class="event-details">
-                        <p><strong>Theme:</strong> ON EAGLE'S WING (Exodus 19:4-5)</p>
-                        <p><strong>Date:</strong> 8th - 12th OCTOBER 2025</p>
-                        <p><strong>Venue:</strong> Plot 5 Block B, Odutola Odusanya close, Olorunsogo, Molete, Ibadan.</p>
+                        <p>Theme: ON EAGLE'S WING (Exodus 19:4-5)</p>
+                        <p>Date: 8th - 12th OCTOBER 2025</p>
+                        <p>Venue: Plot 5 Block B, Odutola Odusanya close, Olorunsogo, Molete, Ibadan.</p>
                     </div>
                     
                     <p>We look forward to sharing this joyous occasion with you!</p>
                     
                     <div class="closing">
                         Yours Faithfully,<br>
-                        <strong>Apostle Paul. A. Adewodun</strong><br>
+                        Apostle Paul. A. Adewodun<br>
                         General Overseer
                     </div>
                 </div>
