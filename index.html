@@ -188,25 +188,26 @@
         }
 
         .image-container {
-            width: 100%;
-            height: 180px;
-            margin: 15px auto;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            background: #f8f9fa;
-            border: 2px solid rgba(6, 2, 197, 0.1);
-        }
+        width: 100%;
+        max-width: clamp(250px, 60vw, 400px);
+        margin: 10px auto 15px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+      }
 
-        .anniversary-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 6px;
-            transition: transform 0.3s ease;
-        }
+      .anniversary-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: clamp(200px, 40vh, 350px);
+        display: block;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
 
         .image-container:hover .anniversary-image {
             transform: scale(1.05);
@@ -258,250 +259,125 @@
             color: #2c3e50;
         }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-                padding-top: 5px;
-            }
-
-            .header-image-container {
-                height: 100px;
-                margin-bottom: 15px;
-            }
-
-            .logo-container {
-                width: 70px;
-                height: 70px;
-            }
-
-            .anniversary-badge {
-                top: 6px;
-                right: 8px;
-                padding: 4px 8px;
-                font-size: 9px;
-            }
-
-            .anniversary-badge .number {
-                font-size: 15px;
-            }
-
-            .company-name {
-                font-size: 16px;
-            }
-
-            .company-tagline {
-                font-size: 11px;
-            }
-
-            .company-details {
-                font-size: 10px;
-            }
-
-            .letterhead,
-            .content {
-                padding: 18px;
-            }
-
-            .letter {
-                min-height: 550px;
-            }
-
-            .image-container {
-                height: 140px;
-                margin: 12px auto;
-            }
-
-            .content h2 {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-
-            .content p {
-                font-size: 12px;
-                margin-bottom: 10px;
-            }
-
-            .content .event-details p {
-                font-size: 12px;
-                margin-bottom: 6px;
-            }
-
-            .content .closing {
-                font-size: 12px;
-                margin-top: 15px;
-            }
-
-            .instructions {
-                font-size: 12px;
-                margin-top: 15px;
-            }
+         /* Performance optimizations for different devices */
+      @media (max-width: 480px) {
+        /* Reduce animations on mobile for better performance */
+        .letter {
+          transition: transform 0.2s ease-out;
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 8px;
-                padding-top: 5px;
-            }
-
-            .header-image-container {
-                height: 80px;
-                margin-bottom: 12px;
-            }
-
-            .logo-container {
-                width: 60px;
-                height: 60px;
-            }
-
-            .anniversary-badge {
-                top: 5px;
-                right: 6px;
-                padding: 3px 6px;
-                font-size: 8px;
-            }
-
-            .anniversary-badge .number {
-                font-size: 13px;
-            }
-
-            .company-name {
-                font-size: 14px;
-            }
-
-            .company-tagline {
-                font-size: 10px;
-            }
-
-            .company-details {
-                font-size: 9px;
-            }
-
-            .letterhead,
-            .content {
-                padding: 15px;
-            }
-
-            .letter {
-                min-height: 500px;
-            }
-
-            .image-container {
-                height: 120px;
-                margin: 10px auto;
-            }
-
-            .content h2 {
-                font-size: 15px;
-            }
-
-            .content p {
-                font-size: 11px;
-                line-height: 1.4;
-            }
-
-            .content .event-details {
-                padding: 10px;
-                margin: 12px 0;
-            }
-
-            .content .event-details p {
-                font-size: 11px;
-                margin-bottom: 5px;
-            }
-
-            .content .closing {
-                font-size: 11px;
-                margin-top: 12px;
-            }
-
-            .instructions {
-                font-size: 11px;
-                margin-top: 12px;
-            }
+        .letterhead,
+        .content {
+          transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
 
-        @media (max-width: 360px) {
-            .header-image-container {
-                height: 70px;
-            }
-
-            .logo-container {
-                width: 50px;
-                height: 50px;
-            }
-
-            .anniversary-badge .number {
-                font-size: 12px;
-            }
-
-            .letter {
-                min-height: 480px;
-            }
-
-            .image-container {
-                height: 100px;
-            }
-
-            .letterhead,
-            .content {
-                padding: 12px;
-            }
+        /* Simplify effects on small screens */
+        .letter:hover {
+          transform: translate3d(0, -1px, 0);
         }
 
-        /* Large screens */
-        @media (min-width: 1024px) {
-            .letter {
-                min-height: 650px;
-            }
+        .header-image {
+          height: clamp(90px, 15vw, 130px);
+        }
+      }
 
-            .image-container {
-                height: 220px;
-            }
-
-            .content h2 {
-                font-size: 20px;
-            }
-
-            .content p {
-                font-size: 14px;
-            }
-
-            .content .closing {
-                font-size: 14px;
-            }
+      /* Disable complex animations on very low-end devices */
+      @media (max-width: 320px) {
+        .letter {
+          transition: none;
+          will-change: auto;
         }
 
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            .letter:hover {
-                transform: none;
-            }
-
-            .image-container:hover .anniversary-image {
-                transform: none;
-            }
+        .letter:hover {
+          transform: none;
         }
 
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            .letter,
-            .letterhead,
-            .content,
-            .anniversary-image {
-                transition: none;
-            }
+        .instructions {
+          animation: none;
+          opacity: 0.8;
+        }
+      }
 
-            .instructions {
-                animation: none;
-                opacity: 1;
-            }
+      /* Disable hover effects on touch devices */
+      @media (hover: none) and (pointer: coarse) {
+        .letter:hover {
+          transform: none;
         }
 
-        .letter:focus {
-            outline: 2px solid #0602c5;
-            outline-offset: 2px;
+        .letter:active {
+          transform: scale(0.98);
+          transition: transform 0.1s ease-out;
         }
+      }
+
+      /* Reduce motion for users who prefer it */
+      @media (prefers-reduced-motion: reduce) {
+        .letter,
+        .letterhead,
+        .content {
+          transition: none;
+        }
+
+        .instructions {
+          animation: none;
+          opacity: 0.8;
+        }
+
+        .letter:active {
+          transform: none;
+        }
+      }
+
+      /* Landscape orientation adjustments */
+      @media (orientation: landscape) and (max-height: 500px) {
+        body {
+          justify-content: flex-start;
+          padding-top: 10px;
+        }
+
+        .letter {
+          min-height: 300px;
+        }
+
+        .header-image {
+          height: clamp(100px, 15vw, 150px);
+        }
+      }
+
+      /* Focus styles for accessibility */
+      .letter:focus {
+        outline: 2px solid #0602c5;
+        outline-offset: 2px;
+      }
+
+      /* Optimize for high DPI displays */
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .church-logo, .anniversary-image {
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+      }
+
+      /* Loading state */
+      .letter.loading {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      /* Add support for older browsers */
+      .no-transforms .letter.flipped .letterhead {
+        display: none;
+      }
+
+      .no-transforms .letter.flipped .content {
+        display: block;
+        opacity: 1;
+        position: relative;
+      }
+
+      .no-transforms .content {
+        display: none;
+      }
     </style>
 </head>
 <body>
