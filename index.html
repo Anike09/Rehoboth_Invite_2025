@@ -246,7 +246,7 @@
         margin-bottom: 20px;
         padding-bottom: 10px;
         border-bottom: 3px solid #0602c5;
-        font-size: clamp(20px, 4vw, 28px);
+        font-size: clamp(16px, 2vw, 18px);
         font-weight: bold;
         text-align: center;
       }
@@ -269,6 +269,7 @@
       .content p:nth-of-type(6) {
         font-weight: 300;
         font-size: clamp(14px, 3vw, 16px);
+        text-align: left;
         padding: 8px 12px;
         margin: 10px 0;
         border-radius: 4px;
@@ -320,7 +321,7 @@
       }
 
        /* Mobile responsiveness */
-      @media (max-width: 750px) {
+      @media (max-width: 700px) {
         body {
           padding: 10px;
         }
@@ -387,7 +388,7 @@
         }
 
         .letter {
-          min-height: 400px;
+          min-height: 300px;
         }
 
         .letterhead,
@@ -417,7 +418,7 @@
         }
 
         .letter {
-          min-height: 350px;
+          min-height: 250px;
         }
 
         .image-container {
@@ -443,6 +444,19 @@
 
         .image-container {
           height: 320px;
+        }
+
+        .letter {
+          min-height: 350px;
+        }
+
+        .image-container {
+          height: 250px;
+        }
+
+        .instructions {
+          font-size: 18px !important;
+          padding: 10px;
         }
       }
 
